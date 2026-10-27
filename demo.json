@@ -1,0 +1,186 @@
+{
+  "decode": {
+    "report_type": "Breast core biopsy pathology",
+    "overview": "This is a pathology report from a needle biopsy of the right breast. It describes the type of cancer cells found, how they look under the microscope, and the results of tests on the cells. It also states that the lymph nodes under the arm were not assessed in this sample.",
+    "findings": [
+      {
+        "quote": "Invasive ductal carcinoma",
+        "term": "Invasive ductal carcinoma",
+        "explanation": "This is the name of the type of cancer cells seen in the sample. Invasive means the cells have grown beyond the milk duct where they started. Ductal means they began in a milk duct. It is the most common type of breast cancer.",
+        "status": "discuss",
+        "ask": "What does this type mean for the next steps in my care?"
+      },
+      {
+        "quote": "Nottingham histologic grade 2",
+        "term": "Grade 2",
+        "explanation": "The grade describes how different the cancer cells look from normal cells under a microscope. Grade 2 is the middle grade on a scale of 1 to 3. The score of 6 is the total of three parts: tubule formation, nuclear pleomorphism and mitotic count.",
+        "status": "discuss",
+        "ask": "How does the grade fit with my other results?"
+      },
+      {
+        "quote": "Size of invasive focus in cores: 14 mm.",
+        "term": "Size in the biopsy cores",
+        "explanation": "The part of the sample that contains cancer measures 14 millimetres. This comes from a small needle sample, so it is not necessarily the full size of the tumour. Imaging and later tests give more complete measurements.",
+        "status": "discuss",
+        "ask": "How will the full size of the tumour be measured?"
+      },
+      {
+        "quote": "Ductal carcinoma in situ: present, intermediate nuclear grade, cribriform pattern.",
+        "term": "Ductal carcinoma in situ",
+        "explanation": "Ductal carcinoma in situ means abnormal cells that are still inside the milk ducts. It is reported here alongside the invasive cancer. Intermediate nuclear grade describes how the cell nuclei look, and cribriform describes the pattern the cells grow in.",
+        "status": "discuss",
+        "ask": "Does this part change anything about my care?"
+      },
+      {
+        "quote": "Lymphovascular invasion: not identified.",
+        "term": "Lymphovascular invasion",
+        "explanation": "This says no cancer cells were seen inside small blood or lymph vessels in the sample. A small needle sample may not show everything, so the care team looks at this together with other results.",
+        "status": "plain",
+        "ask": ""
+      },
+      {
+        "quote": "Estrogen receptor positive (95 percent of cells, strong)",
+        "term": "Estrogen receptor",
+        "explanation": "Receptors are proteins on cells that can respond to hormones. This result means most of the cancer cells have estrogen receptors. The care team uses this information when deciding which kinds of treatment to discuss.",
+        "status": "discuss",
+        "ask": "What does the estrogen receptor result mean for my care?"
+      },
+      {
+        "quote": "Progesterone receptor positive (60 percent, moderate)",
+        "term": "Progesterone receptor",
+        "explanation": "This is another hormone receptor. Here, 60 percent of the cells have it, at a moderate strength. It is read together with the estrogen receptor result.",
+        "status": "discuss",
+        "ask": ""
+      },
+      {
+        "quote": "HER2 score 1+ (negative)",
+        "term": "HER2",
+        "explanation": "HER2 is another protein that is tested in breast cancer. A score of 1+ is reported here as negative. The care team looks at HER2 and the hormone receptors together.",
+        "status": "discuss",
+        "ask": "Is any further HER2 testing needed?"
+      },
+      {
+        "quote": "Ki-67 proliferation index approximately 18 percent",
+        "term": "Ki-67",
+        "explanation": "Ki-67 is a marker of how many cells are actively dividing. Here, about 18 percent of the cells tested were dividing. The care team reads this together with the grade and the other results.",
+        "status": "discuss",
+        "ask": "How is the Ki-67 result used in my case?"
+      },
+      {
+        "quote": "Axillary lymph node status cannot be assessed on this specimen.",
+        "term": "Axillary lymph nodes",
+        "explanation": "The lymph nodes in the armpit were not part of this sample, so this report says nothing about them. Other tests or procedures are used to look at them.",
+        "status": "unclear",
+        "ask": "How will my lymph nodes be checked?"
+      }
+    ],
+    "lab_values": [
+      {
+        "name": "Invasive focus in cores",
+        "value": "14 mm",
+        "reference_range": "",
+        "flag": "no_range_given",
+        "meaning": "The measured size of the cancer found in the needle samples."
+      },
+      {
+        "name": "Estrogen receptor",
+        "value": "95 percent",
+        "reference_range": "",
+        "flag": "no_range_given",
+        "meaning": "The share of cells that carry estrogen receptors."
+      },
+      {
+        "name": "Progesterone receptor",
+        "value": "60 percent",
+        "reference_range": "",
+        "flag": "no_range_given",
+        "meaning": "The share of cells that carry progesterone receptors."
+      },
+      {
+        "name": "Ki-67",
+        "value": "approximately 18 percent",
+        "reference_range": "",
+        "flag": "no_range_given",
+        "meaning": "The share of cells that were actively dividing."
+      }
+    ],
+    "next_steps": [
+      "Biopsy results are usually reviewed together with imaging.",
+      "Further tests, for example to look at the lymph nodes under the arm, may be arranged.",
+      "A team of specialists may discuss the results together before talking with you.",
+      "Your care team decides which of these apply to you."
+    ],
+    "glossary": [
+      {
+        "term": "Invasive ductal carcinoma",
+        "definition": "Cancer that began in a milk duct and has grown into the surrounding breast tissue."
+      },
+      {
+        "term": "Ductal carcinoma in situ",
+        "definition": "Abnormal cells that are inside a milk duct and have not grown into the tissue around it."
+      },
+      {
+        "term": "Lymphovascular invasion",
+        "definition": "Cancer cells seen inside small blood vessels or lymph vessels."
+      },
+      {
+        "term": "Estrogen receptor",
+        "definition": "A protein on cells that can respond to the hormone estrogen."
+      },
+      {
+        "term": "Progesterone receptor",
+        "definition": "A protein on cells that can respond to the hormone progesterone."
+      },
+      {
+        "term": "HER2",
+        "definition": "A protein on the surface of some cells that is tested to help describe a breast cancer."
+      },
+      {
+        "term": "Ki-67",
+        "definition": "A marker that shows how many cells are in the process of dividing."
+      },
+      {
+        "term": "Axillary",
+        "definition": "Relating to the armpit."
+      }
+    ],
+    "limits": [
+      "This report does not say whether the cancer has spread to lymph nodes or other parts of the body.",
+      "It does not describe the full size of the tumour, only what was found in the needle samples.",
+      "It does not say which treatments are suitable. That is decided with your care team."
+    ],
+    "questions": [
+      "What do the grade and the hormone receptor results mean for my next steps?",
+      "How will my lymph nodes be checked?",
+      "What other tests or scans will I need, and when?",
+      "Will a team of specialists review my results together?",
+      "Who is my main contact if I have questions between appointments?",
+      "Is there anything in this report that is unclear or needs to be repeated?"
+    ],
+    "care_team_note": "This explanation does not replace your care team, so ask them about anything you are unsure of."
+  },
+  "learn": {
+    "family_note": "Relatives may want to ask their own doctors whether breast screening or genetic counselling is relevant for them. Most breast cancers are not caused by a single inherited change, and a doctor can advise based on each person's own family history.",
+    "prevention_points": [
+      "Avoiding tobacco and limiting alcohol lowers the risk of several cancers, including breast cancer.",
+      "Staying physically active and keeping a healthy weight are linked to a lower risk of breast cancer.",
+      "Knowing how your breasts normally look and feel helps you notice changes, such as a new lump, and report them to a doctor promptly.",
+      "Ask a doctor about screening programmes available in your area and when they are recommended."
+    ],
+    "myths": [
+      {
+        "myth": "Cancer is contagious.",
+        "fact": "You cannot catch cancer from another person."
+      },
+      {
+        "myth": "A biopsy makes cancer spread.",
+        "fact": "A needle biopsy is a standard way to diagnose cancer, and doctors plan it carefully to avoid this."
+      },
+      {
+        "myth": "Only women with a family history get breast cancer.",
+        "fact": "Most women who develop breast cancer have no close relative with the disease."
+      }
+    ],
+    "care_team_note": "This is general information. Your care team or a family doctor can answer questions about individual risk."
+  }
+}

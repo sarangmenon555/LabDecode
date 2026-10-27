@@ -1,0 +1,217 @@
+[
+  {
+    "name": "standard two-column header",
+    "text": "Patient Name : Mrs. Anita Joseph          Age/Sex : 54 Yrs / F\nUHID / MR No : P-0045671                   Lab No : 24-5567\nReferred by : Dr. K. Menon MD            Collected on : 12-Mar-2025 10:32 AM\nMob: 98470 12345\nFinal diagnosis: Invasive ductal carcinoma, grade 2.",
+    "secrets": [
+      "Anita",
+      "Joseph",
+      "P-0045671",
+      "24-5567",
+      "Menon",
+      "12-Mar-2025",
+      "98470",
+      "12345"
+    ],
+    "keep": [
+      "Age/Sex : 54 Yrs / F",
+      "Invasive ductal carcinoma, grade 2"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "all capitals",
+    "text": "NAME: ANITA JOSEPH\nSEX/AGE: F/54\nREF. BY: DR. SURESH KUMAR\nLAB NO: 25/00123\nIMPRESSION: Benign fibroadenoma, 12 mm.",
+    "secrets": [
+      "ANITA",
+      "JOSEPH",
+      "SURESH",
+      "KUMAR",
+      "25/00123"
+    ],
+    "keep": [
+      "SEX/AGE: F/54",
+      "Benign fibroadenoma, 12 mm"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "son of",
+    "text": "Patient: Ramesh Nair S/o Gopalan Nair\nAge: 61 years\nDiagnosis: Adenocarcinoma of the colon, moderately differentiated.",
+    "secrets": [
+      "Ramesh",
+      "Gopalan",
+      "Nair"
+    ],
+    "keep": [
+      "Age: 61 years",
+      "Adenocarcinoma of the colon, moderately differentiated"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "husband and daughter forms",
+    "text": "Name: Smt. Lakshmi Devi\nW/o Shri. Rajan Pillai\nD/o Late Krishnan Nambiar\nSex: Female   Age: 47\nFinal diagnosis: Papillary thyroid carcinoma, 9 mm.",
+    "secrets": [
+      "Lakshmi",
+      "Devi",
+      "Rajan",
+      "Pillai",
+      "Krishnan",
+      "Nambiar"
+    ],
+    "keep": [
+      "Sex: Female   Age: 47",
+      "Papillary thyroid carcinoma, 9 mm"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "institution header and multi-line address",
+    "text": "SUNRISE HOSPITAL & RESEARCH CENTRE\nDepartment of Pathology\nCollected at : Sunrise Hospital, Pathanamthitta\nAddress: House No 12, Temple Road,\nKottayam 686001\nMobile 94470 12345\nClinical details: Lump in the left breast for 3 months.",
+    "secrets": [
+      "SUNRISE",
+      "Pathanamthitta",
+      "Temple Road",
+      "Kottayam",
+      "686001",
+      "94470"
+    ],
+    "keep": [
+      "Department of Pathology",
+      "Lump in the left breast for 3 months"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "unlabeled phones and web",
+    "text": "Contact: 98470 12345 / 0468 2222333\nEmail reports@sunriselab.in   Web www.sunriselab.in\nSpecimen: Left axillary lymph node, 2 of 14 positive.",
+    "secrets": [
+      "98470",
+      "0468 2222333",
+      "reports@sunriselab.in",
+      "www.sunriselab.in"
+    ],
+    "keep": [
+      "Left axillary lymph node, 2 of 14 positive"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "dates in several formats",
+    "text": "Date of birth: 12th March 1971\nCollected: 12-03-2025   Reported: 14/03/2025\nReceived on March 13, 2025\nResult: Ki-67 approximately 18 percent.",
+    "secrets": [
+      "12th March 1971",
+      "12-03-2025",
+      "14/03/2025",
+      "March 13, 2025"
+    ],
+    "keep": [
+      "Ki-67 approximately 18 percent"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "identity numbers",
+    "text": "Aadhaar No: 2345 6789 0123\nPassport No: K1234567\nPAN: ABCDE1234F\nInsurance Policy No: LIC-998877\nBill No: B-2025-0044\nBarcode: 77889900\nSample No: S-4455\nFinding: HER2 score 1+ (negative).",
+    "secrets": [
+      "2345 6789 0123",
+      "K1234567",
+      "ABCDE1234F",
+      "LIC-998877",
+      "B-2025-0044",
+      "77889900",
+      "S-4455"
+    ],
+    "keep": [
+      "HER2 score 1+ (negative)"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "alternative labels",
+    "text": "Pt. Name: Anita Joseph\nName of the Patient - Anita Joseph\nPatient's Name : Anita Joseph\nRequested by: Dr. Priya Nair\nConsultant: Dr. Arun Varghese\nDoctor Name: Dr. Arun Varghese\nResult: Estrogen receptor positive, 95 percent.",
+    "secrets": [
+      "Anita",
+      "Joseph",
+      "Priya",
+      "Nair",
+      "Arun",
+      "Varghese"
+    ],
+    "keep": [
+      "Estrogen receptor positive, 95 percent"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "titles inside the text",
+    "text": "The slides were reviewed by DR. SURESH KUMAR and by Prof. Dr. A K Pillai.\nMRS. ANITA JOSEPH presented with a lump.\nImpression: Invasive lobular carcinoma, grade 1.",
+    "secrets": [
+      "SURESH",
+      "KUMAR",
+      "Pillai",
+      "ANITA",
+      "JOSEPH"
+    ],
+    "keep": [
+      "Invasive lobular carcinoma, grade 1"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "clinical numbers must survive",
+    "text": "Hb 12.5 g/dL (13.0 - 17.0)\nWBC 4500 /uL (4000 - 11000)\nPlatelets 150000 /uL\nKi-67 18 percent, ER 95 percent, PR 60 percent.\nMass measures 14 x 12 x 9 mm at 10 o'clock.",
+    "secrets": [],
+    "keep": [
+      "Hb 12.5 g/dL (13.0 - 17.0)",
+      "WBC 4500 /uL (4000 - 11000)",
+      "Platelets 150000 /uL",
+      "Ki-67 18 percent, ER 95 percent, PR 60 percent",
+      "14 x 12 x 9 mm at 10 o'clock"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "patient line that is clinical",
+    "text": "Patient: 54 year old female with a breast lump.\nPatient: female\nHistory: Family history of breast cancer in a sister.\nDiagnosis: Ductal carcinoma in situ, intermediate grade.",
+    "secrets": [],
+    "keep": [
+      "54 year old female with a breast lump",
+      "Patient: female",
+      "Family history of breast cancer in a sister",
+      "Ductal carcinoma in situ, intermediate grade"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "pin code and city labels",
+    "text": "City: Pathanamthitta\nPin Code: 689645\nVillage: Konni\nRelative: Mr. Thomas Joseph\nSpecimen: Core needle biopsy, right breast.",
+    "secrets": [
+      "Pathanamthitta",
+      "689645",
+      "Konni",
+      "Thomas",
+      "Joseph"
+    ],
+    "keep": [
+      "Core needle biopsy, right breast"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "imaging report header",
+    "text": "Radiology Report\nPatient Name: Mr. Rajesh Menon   Accession: A-77231   Date: 02/04/2025\nReferring physician: Dr. S. Nair\nTechnique: Contrast enhanced CT chest.\nFindings: 11 mm spiculated nodule in the right upper lobe.",
+    "secrets": [
+      "Rajesh",
+      "Menon",
+      "A-77231",
+      "02/04/2025",
+      "Nair"
+    ],
+    "keep": [
+      "Contrast enhanced CT chest",
+      "11 mm spiculated nodule in the right upper lobe"
+    ],
+    "knownGaps": []
+  }
+]

@@ -1,0 +1,9 @@
+SURGICAL PATHOLOGY REPORT (SYNTHETIC SAMPLE - NOT A REAL PATIENT)
+Age: 54   Sex: F
+Specimen: Right breast, 10 o'clock, core needle biopsy.
+Final diagnosis: Invasive ductal carcinoma, Nottingham histologic grade 2 (tubule formation 3, nuclear pleomorphism 2, mitotic count 1; total score 6).
+Size of invasive focus in cores: 14 mm.
+Ductal carcinoma in situ: present, intermediate nuclear grade, cribriform pattern.
+Lymphovascular invasion: not identified.
+Immunohistochemistry: Estrogen receptor positive (95 percent of cells, strong). Progesterone receptor positive (60 percent, moderate). HER2 score 1+ (negative). Ki-67 proliferation index approximately 18 percent.
+Comment: Findings should be correlated with imaging. Axillary lymph node status cannot be assessed on this specimen.

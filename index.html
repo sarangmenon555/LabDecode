@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LabDecode: understand your cancer report in plain language</title>
+<meta name="description" content="Paste a pathology or imaging report and get a plain-language explanation and a list of questions to ask your care team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="theme-color" content="#0a444b">
+<script src="display.js"></script>
+</head>
+<body>
+<a class="skip" href="#report">Skip to the report box</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1 class="wordmark">LabDecode</h1>
+    <p class="tagline">Your report, in plain words. Then the right questions for your care team.</p>
+    <div class="display" role="group" aria-label="Display settings">
+      <span class="display-label">Text size</span>
+      <button type="button" data-size-choice="normal" aria-pressed="true">Normal</button>
+      <button type="button" data-size-choice="large" aria-pressed="false">Large</button>
+      <button type="button" data-size-choice="larger" aria-pressed="false">Larger</button>
+      <span class="display-label display-gap">Theme</span>
+      <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      <span class="display-check">
+        <input type="checkbox" id="contrast-toggle">
+        <label for="contrast-toggle">High contrast</label>
+      </span>
+      <button type="button" id="ui-toggle" class="display-gap" hidden>Show interface in English</button>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel input-panel" aria-labelledby="input-heading">
+    <h2 id="input-heading">Your report</h2>
+
+    <div class="upload">
+      <span class="upload-title">Have a photo or PDF instead?</span>
+      <div class="upload-actions">
+        <label class="secondary file-button" for="file-input">Upload photo or PDF</label>
+        <label class="secondary file-button" for="camera-input">Take a photo</label>
+      </div>
+      <input type="file" id="file-input" class="visually-hidden" accept="image/*,application/pdf" multiple>
+      <input type="file" id="camera-input" class="visually-hidden" accept="image/*" capture="environment">
+      <p class="help">The file is read on your device. It is never uploaded. Choose several photos at once for a report with more than one page.</p>
+      <button type="button" id="add-page" class="text-button" hidden>Add another page</button>
+      <div id="upload-progress" class="progress-wrap" hidden>
+        <progress id="progress-bar" max="100"></progress>
+        <span id="progress-label" class="progress-label"></span>
+      </div>
+      <p id="upload-note" class="note" role="status" hidden></p>
+    </div>
+
+    <label for="report">Or paste the text of a pathology or imaging report</label>
+    <textarea id="report" rows="12" maxlength="12000" spellcheck="false" aria-describedby="report-help report-count"></textarea>
+    <div class="meta-row">
+      <span id="report-count" class="count">0 / 12,000</span>
+      <button type="button" id="sample" class="text-button">Use a sample report</button>
+    </div>
+    <p id="report-help" class="help">Check the text for anything personal before you continue.</p>
+
+    <div class="redact-row">
+      <input type="checkbox" id="redact-toggle" checked>
+      <label for="redact-toggle" class="inline-label">Remove personal details before sending</label>
+    </div>
+    <button type="button" id="redact-now" class="text-button">Remove them now so I can check</button>
+    <p id="redact-note" class="note" role="status" hidden></p>
+
+    <details class="compare" id="compare-details">
+      <summary>Compare with an earlier report</summary>
+      <label for="older">Paste the earlier report</label>
+      <textarea id="older" rows="8" maxlength="12000" spellcheck="false" aria-describedby="older-help"></textarea>
+      <button type="button" id="sample-pair" class="text-button">Load a sample pair of reports</button>
+      <p id="older-help" class="help">The report above is treated as the newer one. Personal details are removed from both if the box above is ticked.</p>
+    </details>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="language">Explain in <span class="lang-hint" aria-hidden="true" data-no-i18n>भाषा, ভাষা, ભાષા, ಭಾಷೆ, ഭാഷ, மொழி, భాష, ଭାଷା</span></label>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="as">অসমীয়া (Assamese, beta)</option>
+          <option value="bn">বাংলা (Bengali)</option>
+          <option value="gu">ગુજરાતી (Gujarati)</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="kn">ಕನ್ನಡ (Kannada)</option>
+          <option value="ml">മലയാളം (Malayalam)</option>
+          <option value="mr">मराठी (Marathi)</option>
+          <option value="or">ଓଡ଼ିଆ (Odia, beta)</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="level">Reading level</label>
+        <select id="level">
+          <option value="simple">Very simple</option>
+          <option value="standard">Standard</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="help language-note">Translations are machine generated. Odia and Assamese are marked beta because they are the least reliable. Ask a bilingual person to check anything important.</p>
+
+    <div class="redact-row bilingual-row" id="bilingual-row" hidden>
+      <input type="checkbox" id="bilingual-toggle">
+      <label for="bilingual-toggle" class="inline-label">Also show English next to the translation, for talking with a doctor</label>
+    </div>
+
+    <button type="button" id="decode" class="primary">Explain this report</button>
+    <button type="button" id="cancel" class="secondary cancel-button" hidden>Cancel</button>
+
+    <p class="privacy">Nothing is saved by LabDecode. Your text is sent once to Google's Gemini service to produce the explanation. On Google's free tier, submitted text can be used to improve its products and may be read by reviewers, so remove personal details first.</p>
+  </section>
+
+  <section class="output" id="output" aria-live="polite" aria-busy="false">
+    <div class="empty" id="empty">
+      <h2>What you will get</h2>
+      <ul class="empty-list">
+        <li>Each finding set beside the exact words from your report</li>
+        <li>A plain explanation, with anything uncertain marked for your care team</li>
+        <li>A list of questions to bring to your appointment, ready to print</li>
+      </ul>
+      <button type="button" id="demo" class="secondary demo-button">See a ready-made example</button>
+      <p class="fineprint">Uses a synthetic report. Works without an internet connection.</p>
+    </div>
+    <div id="status" class="status" role="status" hidden></div>
+    <div id="results" hidden></div>
+  </section>
+</main>
+
+<section class="resources" aria-labelledby="resources-heading" data-no-i18n>
+  <details>
+    <summary id="resources-heading">Trusted sources and support</summary>
+    <div class="resources-body">
+      <p><strong>Urgent symptoms.</strong> If you or the person you care for feels seriously unwell, call your doctor or emergency services. In India the national emergency number is 112.</p>
+      <p><strong>Emotional support.</strong> Tele-MANAS is a free government helpline that runs around the clock in many Indian languages. Call <a href="tel:14416">14416</a> or <a href="tel:18008914416">1-800-891-4416</a>, or visit <a href="https://telemanas.mohfw.gov.in" target="_blank" rel="noopener noreferrer">telemanas.mohfw.gov.in</a>.</p>
+      <p><strong>Reliable cancer information.</strong></p>
+      <ul class="resource-list">
+        <li><a href="https://tmc.gov.in" target="_blank" rel="noopener noreferrer">Tata Memorial Centre</a>, India's national cancer centre</li>
+        <li><a href="https://www.who.int/health-topics/cancer" target="_blank" rel="noopener noreferrer">World Health Organization: cancer</a></li>
+        <li><a href="https://www.cancer.gov" target="_blank" rel="noopener noreferrer">National Cancer Institute</a>, United States</li>
+        <li><a href="https://www.cancerresearchuk.org/about-cancer" target="_blank" rel="noopener noreferrer">Cancer Research UK: about cancer</a></li>
+        <li><a href="https://www.cancer.org" target="_blank" rel="noopener noreferrer">American Cancer Society</a></li>
+      </ul>
+      <p class="fineprint">Check each service for its current hours and numbers. These links open other websites that LabDecode does not control.</p>
+    </div>
+  </details>
+</section>
+
+<section class="lookup" aria-labelledby="lookup-heading" data-no-i18n>
+  <details>
+    <summary id="lookup-heading">Look up a medical term (works without an internet connection)</summary>
+    <div class="lookup-body">
+      <label for="lookup-input">Search a term, such as margin, grade or HER2</label>
+      <input type="text" id="lookup-input" autocomplete="off" spellcheck="false">
+      <p id="lookup-count" class="fineprint" role="status"></p>
+      <dl id="lookup-results" class="lookup-results"></dl>
+      <p class="fineprint">Short general definitions in English. They explain what a word means, not what a result means for any person.</p>
+    </div>
+  </details>
+</section>
+
+<footer class="footer">
+  <p>LabDecode explains the wording of a report. It does not diagnose, predict outcomes or recommend treatment, and it does not replace your doctor.</p>
+  <p><a href="about">How LabDecode works, privacy and safety</a></p>
+</footer>
+
+<div id="visit-sheet" class="visit-sheet" aria-hidden="true"></div>
+
+<script src="redact.js"></script>
+<script src="imageprep.js"></script>
+<script src="ocr.js"></script>
+<script src="speech.js"></script>
+<script src="dictate.js"></script>
+<script src="glossary.js"></script>
+<script src="export.js"></script>
+<script src="lookup.js"></script>
+<script src="locales.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

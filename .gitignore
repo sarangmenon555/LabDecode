@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+verify-output/
+ocr-eval-images/
+*.log
+.DS_Store
+*.traineddata
+__pycache__/

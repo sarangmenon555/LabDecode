@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How LabDecode works, privacy and safety</title>
+<meta name="description" content="What LabDecode does, what stays on your device, what is sent where, and how it is designed to stay safe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Gujarati:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&family=Noto+Sans+Malayalam:wght@400;700&family=Noto+Sans+Tamil:wght@400;700&family=Noto+Sans+Telugu:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<meta name="theme-color" content="#0a444b">
+<script src="display.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to the content</a>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="wordmark"><a class="wordmark-link" href="./">LabDecode</a></p>
+    <h1 class="tagline">How it works, privacy and safety</h1>
+  </div>
+</header>
+
+<main id="content" class="about">
+  <p><a href="./">Back to LabDecode</a></p>
+
+  <section class="block">
+    <h2>What LabDecode is</h2>
+    <p>LabDecode is a prototype reading aid. It explains the wording of cancer pathology and imaging reports in plain language and helps people prepare questions for their care team.</p>
+    <p>It does not diagnose, predict outcomes or recommend treatment. It is not a medical device and it is not for emergencies. If you or someone you care for feels seriously unwell, contact a doctor or emergency services.</p>
+  </section>
+
+  <section class="block">
+    <h2>What stays on your device</h2>
+    <ul class="plain-list">
+      <li>Reading a photo or PDF into text. Files are never uploaded.</li>
+      <li>Removing personal details such as names, phone numbers, ID numbers and dates, before any text is sent. This is on by default and you can check the result first.</li>
+      <li>The medical term lookup, printing, the visit sheet and the calendar reminder file.</li>
+      <li>Your display settings, your last chosen language and saved interface translations, which are kept in your browser.</li>
+      <li>The site files and the ready-made example, so the page can open without a connection after one visit.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>What is sent, and to whom</h2>
+    <div class="table-wrap">
+      <table class="values">
+        <caption>Everything goes to LabDecode's server function, which passes it to Google's Gemini service. Nothing is sent unless you press the matching button.</caption>
+        <thead>
+          <tr><th scope="col">Action</th><th scope="col">What is sent</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Explain this report</th><td>The report text, after personal details are removed if that box is ticked, plus the language and reading level.</td></tr>
+          <tr><th scope="row">Compare with an earlier report</th><td>Both report texts, treated the same way.</td></tr>
+          <tr><th scope="row">Ask about this report</th><td>The report text again, your question, and up to three earlier questions and answers.</td></tr>
+          <tr><th scope="row">Family, prevention and common myths</th><td>Only the report type and up to twelve key terms. Not the report text.</td></tr>
+          <tr><th scope="row">Translated interface</th><td>The language and the fixed list of interface texts. No report content.</td></tr>
+          <tr><th scope="row">Share with family, WhatsApp</th><td>The summary goes to the app you choose, which then has its own rules.</td></tr>
+          <tr><th scope="row">Dictate a question</th><td>Your browser's speech service may process the audio online.</td></tr>
+          <tr><th scope="row">Read aloud</th><td>Uses the voices of your browser. Some browsers use online voices.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>What LabDecode stores</h2>
+    <p>LabDecode has no accounts and no database, and it does not keep report text. The server function holds the text only while it handles the request. For rate limiting, it keeps your connection address and request times in memory for about a minute.</p>
+    <p>The hosting provider may keep standard technical logs of requests, such as addresses and timing, as hosting providers normally do.</p>
+  </section>
+
+  <section class="block">
+    <h2>How Google handles the text</h2>
+    <p>The explanations come from Google's Gemini API. Google's terms say that on unpaid quota, including the free tier, Google uses submitted content and responses to provide, improve and develop its products and machine learning technologies, and that human reviewers may read it. On paid quota, Google says it does not use prompts or responses to improve its products. For users in the European Economic Area, Switzerland and the United Kingdom, the terms say the paid-service rules apply to all use.</p>
+    <p>What this means in practice: this demo should be used with synthetic or fully de-identified text. A real deployment for patients would need a paid account, a data protection review and legal advice. Read the current terms at <a href="https://ai.google.dev/terms" target="_blank" rel="noopener noreferrer">ai.google.dev/terms</a>.</p>
+  </section>
+
+  <section class="block">
+    <h2>How it is designed to stay safe</h2>
+    <ul class="plain-list">
+      <li>The instructions given to the model forbid diagnosis, prognosis, survival figures, treatment advice and telling a person what to do.</li>
+      <li>Each finding is shown beside the exact words from the report, so it can be checked.</li>
+      <li>Anything uncertain is marked as unclear and passed to the care team.</li>
+      <li>Whether a lab value is inside the printed range is worked out by code from the range printed in the report, not by the model, and is shown as unknown when the range is unclear.</li>
+      <li>Follow-up questions about outlook or treatment are not answered. They become suggested questions for the care team.</li>
+      <li>When two reports are compared, the wording stays neutral and never says better or worse.</li>
+      <li>A disclaimer is added by the page itself, not left to the model.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>Known limits</h2>
+    <ul class="plain-list">
+      <li>Explanations are produced by an AI model and can be wrong or incomplete. Always check with your care team.</li>
+      <li>Reading photos can misread text, especially numbers. Photos are cleaned up first and the page lists words it was unsure about, but always check the extracted text against the original. Photo reading supports English text only.</li>
+      <li>Automatic removal of personal details is pattern based. It misses names that have no label or title, so read the text before sending it.</li>
+      <li>The disclaimers, status labels, range notes and privacy note are fixed translations stored in the site, prepared with AI assistance and checked by automated tests, not by native speakers. All other translated text and the explanations are machine generated and have not been reviewed by native speakers. Odia and Assamese are the least reliable, and read-aloud or dictation may not be available for them on your device.</li>
+      <li>The medical term lookup is in English and gives general definitions only.</li>
+      <li>The service has not been clinically validated.</li>
+    </ul>
+  </section>
+
+  <p class="fineprint">Last reviewed 24 October 2026.</p>
+</main>
+</body>
+</html>

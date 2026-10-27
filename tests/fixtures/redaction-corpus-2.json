@@ -1,0 +1,128 @@
+[
+  {
+    "name": "no dot after Pt",
+    "text": "Pt Name: Anitha Joseph\nPatient ID: 4455-221\nTel: +91 481 2345678\nImpression: Fibroadenoma, 14 mm.",
+    "secrets": [
+      "Anitha",
+      "Joseph",
+      "4455-221",
+      "2345678"
+    ],
+    "keep": [
+      "Impression: Fibroadenoma, 14 mm"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "title without dot, uppercase",
+    "text": "Mrs ANITHA JOSEPH, 54 yrs F\nDate of Report: 14.03.2025\nDiagnosis: Infiltrating ductal carcinoma, NST, grade 2.",
+    "secrets": [
+      "ANITHA",
+      "JOSEPH",
+      "14.03.2025"
+    ],
+    "keep": [
+      "Infiltrating ductal carcinoma, NST, grade 2"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "lowercase name after label",
+    "text": "Name :  anitha joseph\nEmail: anitha.joseph1971@gmail.com\nMobile No.: 9847012345\nMargins: negative, closest margin 4 mm.",
+    "secrets": [
+      "anitha joseph",
+      "anitha.joseph1971@gmail.com",
+      "9847012345"
+    ],
+    "keep": [
+      "Margins: negative, closest margin 4 mm"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "signatory lines",
+    "text": "Chief Pathologist: Dr Suresh Kumar, MD, FRCPath\nCollected by: Nurse Beena\nHusband: Joseph Mathew\nSpecimen: Excision biopsy, left breast.",
+    "secrets": [
+      "Suresh",
+      "Kumar",
+      "Beena",
+      "Joseph",
+      "Mathew"
+    ],
+    "keep": [
+      "Excision biopsy, left breast"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "narrative names",
+    "text": "Ms. Anitha, a 54-year-old woman, presented with a lump.\nHer husband, Mr Joseph, accompanied her.\nUltrasound shows a 16 mm hypoechoic mass.",
+    "secrets": [
+      "Anitha",
+      "Joseph"
+    ],
+    "keep": [
+      "54-year-old woman, presented with a lump",
+      "Ultrasound shows a 16 mm hypoechoic mass"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "name with no label or title",
+    "text": "Report for ANITHA JOSEPH, 54F\nSample ID/Barcode: 998811\nAddr: Plot 5, Green Park\nHospital Reg No: HR-2231\nFinding: Lymphovascular invasion present.",
+    "secrets": [
+      "Green Park",
+      "HR-2231"
+    ],
+    "keep": [
+      "Finding: Lymphovascular invasion present"
+    ],
+    "knownGaps": [
+      "ANITHA JOSEPH",
+      "998811"
+    ]
+  },
+  {
+    "name": "initials only",
+    "text": "Treating doctor K. A. Joseph reviewed the slides.\nReferral: Dr. P. Menon\nGleason score 3+4=7.",
+    "secrets": [
+      "Menon"
+    ],
+    "keep": [
+      "Gleason score 3+4=7"
+    ],
+    "knownGaps": [
+      "Joseph"
+    ]
+  },
+  {
+    "name": "Indian lab layout",
+    "text": "Registered on: 12/03/2025 09:15   Reported on: 14/03/2025 17:40\nName of Patient : MRS. LAKSHMI DEVI   Age : 47 Years   Sex : Female\nRef. Dr. : DR. ARUN VARGHESE (MD)\nSpecimen : Thyroidectomy, total.\nFinal report: Papillary carcinoma, 9 mm, no extrathyroidal extension.",
+    "secrets": [
+      "12/03/2025",
+      "14/03/2025",
+      "LAKSHMI",
+      "DEVI",
+      "ARUN",
+      "VARGHESE"
+    ],
+    "keep": [
+      "Age : 47 Years",
+      "Sex : Female",
+      "Thyroidectomy, total",
+      "Papillary carcinoma, 9 mm"
+    ],
+    "knownGaps": []
+  },
+  {
+    "name": "clinical content with label-like words",
+    "text": "Name of procedure: Wide local excision.\nDoctor's note: margins to be re-excised.\nContact lens history: none.\nHospital course: uneventful.\nResult: CA 125 is 35 U/mL (0 - 35).",
+    "secrets": [],
+    "keep": [
+      "Wide local excision",
+      "margins to be re-excised",
+      "Result: CA 125 is 35 U/mL (0 - 35)"
+    ],
+    "knownGaps": []
+  }
+]
