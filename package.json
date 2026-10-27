@@ -7,9 +7,9 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "build": "node scripts/build.mjs",
-    "dev": "npm run build && npx wrangler pages dev dist",
-    "deploy": "npm run build && npx wrangler pages deploy dist --project-name labdecode",
-    "logs": "npx wrangler pages deployment tail --project-name labdecode",
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "logs": "npx wrangler tail",
     "verify:languages": "node scripts/verify-languages.mjs"
   },
   "engines": {
