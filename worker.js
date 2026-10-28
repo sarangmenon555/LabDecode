@@ -1,9 +1,9 @@
-import { json } from "../lib/gemini.js";
-import * as decode from "../functions/api/decode.js";
-import * as compare from "../functions/api/compare.js";
-import * as learn from "../functions/api/learn.js";
-import * as ask from "../functions/api/ask.js";
-import * as labels from "../functions/api/labels.js";
+import { json } from "./lib/gemini.js";
+import * as decode from "./functions/api/decode.js";
+import * as compare from "./functions/api/compare.js";
+import * as learn from "./functions/api/learn.js";
+import * as ask from "./functions/api/ask.js";
+import * as labels from "./functions/api/labels.js";
 
 const ROUTES = {
   "/api/decode": decode,
