@@ -8,6 +8,7 @@ LabDecode is a reading aid. It does not diagnose, predict outcomes or recommend 
 
 ## What it does
 
+- Guides the reader through three simple steps: choose a language, add the report, get the explanation.
 - Reads a report from pasted text, a photo or a PDF.
 - Explains it finding by finding, with each explanation set beside the exact words from the report.
 - Marks every finding as straightforward, worth discussing, or unclear and to be confirmed with the care team.
@@ -19,6 +20,7 @@ LabDecode is a reading aid. It does not diagnose, predict outcomes or recommend 
 ### Understanding the report
 - **Side-by-side explanations.** The original wording and the plain-language meaning appear together, so every explanation can be checked.
 - **Clear status for each finding.** Findings are labelled straightforward, worth discussing, or unclear. Long reports can be filtered by status.
+- **At a glance.** A colour-coded summary bar shows how many findings fall into each status, and section shortcuts let readers jump straight to the findings, numbers, questions or the take-home tools.
 - **Numbers checked against the report.** Lab values are compared with the range printed in the report itself. The comparison is computed by code, not by the language model, and is shown as unknown when the range is unclear.
 - **Tap-to-define terms.** Medical terms in the explanation open a short definition.
 - **Medical term lookup.** A searchable glossary of common terms that works without an internet connection.
@@ -52,7 +54,7 @@ LabDecode is a reading aid. It does not diagnose, predict outcomes or recommend 
 
 ## Languages
 
-Explanations, questions and the interface are available in English and ten Indian languages. Each language is shown in its own script in the language picker.
+Explanations, questions and the interface are available in English and ten Indian languages. Each language is shown in its own script on a one-tap language picker, so no English is needed to find it.
 
 | Language | Native name | Status |
 | --- | --- | --- |
@@ -68,6 +70,7 @@ Explanations, questions and the interface are available in English and ten India
 | Telugu | తెలుగు | Supported |
 | English | English | Supported |
 
+- The disclaimers, status labels and other safety-critical texts are fixed translations stored in the application. They do not depend on live translation.
 - Odia and Assamese are marked beta because they are the least reliable.
 - Read-aloud and dictation depend on the voices and speech support of the user's device.
 - Reading text from photos and PDFs supports English reports only.
@@ -81,6 +84,27 @@ Explanations, questions and the interface are available in English and ten India
 - Questions about outlook or treatment are redirected to the care team instead of being answered.
 - The disclaimer is added by the application itself and is not left to the language model.
 
+## How it works
+
+The interface runs in the browser. Reading photos and PDFs, removing personal details, printing, glossary lookup and read-aloud all happen on the device. When a report is explained, its text is sent to a small server function, which calls the Google Gemini API and returns a structured result that the browser displays.
+
+## Technology
+
+- Plain HTML, CSS and JavaScript, with no front-end framework and no runtime dependencies
+- Cloudflare Workers for the server functions and static hosting
+- Google Gemini API for explanations, comparison, follow-up answers and interface translation
+- Tesseract.js and PDF.js, bundled with the application, for reading photos and PDFs
+- A service worker for offline use
+- Automated tests that run with Node.js and require no installed packages
+
+## Privacy
+
+LabDecode has no accounts and no database, and it does not keep report text. Report text is processed by the Google Gemini API. Under Google's terms, content submitted on the free tier may be used to improve Google's products and may be reviewed by people; this does not apply to paid usage. Use synthetic or fully de-identified text with a free key. A deployment for real patients requires a paid account, a data protection review and legal advice. Details are on the About page inside the application.
+
 ## Status
 
 LabDecode is a prototype. It has not been clinically validated and is not a medical device. It is not intended for emergencies. Explanations are produced by an AI model and can be wrong or incomplete, so they should always be confirmed with a doctor or care team.
+
+## Getting started
+
+Installation, local use, deployment and maintenance commands are in [COMMANDS.md](COMMANDS.md).

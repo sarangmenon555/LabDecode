@@ -134,6 +134,7 @@
     els.status.hidden = false;
     els.status.textContent = message;
     els.status.className = isError ? "status error" : "status";
+    els.status.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function setNote(node, message, isWarning) {
@@ -209,8 +210,9 @@
     window.LabGlossary.fill(host, text, state.data ? state.data.glossary : []);
   }
 
-  function block(title) {
+  function block(title, id) {
     var section = make("section", "block");
+    if (id) section.id = id;
     var heading = make("h2", "", title);
     heading.setAttribute("lang", "en");
     section.appendChild(heading);
@@ -289,6 +291,68 @@
     return card;
   }
 
+  function renderGlance(findings) {
+    if (!findings.length) return null;
+    var counts = { discuss: 0, unclear: 0, plain: 0 };
+    findings.forEach(function (item) {
+      counts[STATUS_LABELS[item.status] ? item.status : "unclear"] += 1;
+    });
+
+    var box = make("div", "glance");
+    var top = make("div", "glance-top");
+    top.appendChild(make("p", "glance-title", "At a glance"));
+    var total = make("p", "glance-total");
+    total.appendChild(make("strong", "", String(findings.length)));
+    total.appendChild(document.createTextNode(" "));
+    total.appendChild(make("span", "", "findings"));
+    top.appendChild(total);
+    box.appendChild(top);
+
+    var bar = make("div", "glance-bar");
+    bar.setAttribute("aria-hidden", "true");
+    var legend = make("ul", "glance-legend");
+    [["discuss", "Worth discussing"], ["unclear", "Unclear"], ["plain", "Straightforward"]].forEach(function (pair) {
+      var count = counts[pair[0]];
+      if (!count) return;
+      var segment = make("span", pair[0]);
+      segment.style.flexGrow = String(count);
+      bar.appendChild(segment);
+      var item = make("li", pair[0]);
+      item.appendChild(make("strong", "", String(count)));
+      item.appendChild(document.createTextNode(" "));
+      item.appendChild(make("span", "", pair[1]));
+      legend.appendChild(item);
+    });
+    box.appendChild(bar);
+    box.appendChild(legend);
+    return box;
+  }
+
+  function insertJump() {
+    var defs = [
+      ["sec-summary", "Summary"],
+      ["sec-findings", "Findings"],
+      ["sec-numbers", "Numbers"],
+      ["sec-compare", "Comparison"],
+      ["sec-questions", "Questions"],
+      ["sec-ask", "Ask"],
+      ["sec-family", "Family"],
+      ["sec-take", "Take with you"]
+    ];
+    var nav = make("nav", "jump");
+    nav.setAttribute("aria-label", "Sections");
+    nav.setAttribute("lang", "en");
+    defs.forEach(function (def) {
+      if (!els.results.querySelector("#" + def[0])) return;
+      var link = make("a", "", def[1]);
+      link.href = "#" + def[0];
+      nav.appendChild(link);
+    });
+    var hero = els.results.querySelector(".result-hero");
+    if (nav.children.length < 3 || !hero) return;
+    els.results.insertBefore(nav, hero.nextSibling);
+  }
+
   function renderFilters(findings, cards) {
     var counts = { plain: 0, discuss: 0, unclear: 0 };
     findings.forEach(function (item) {
@@ -344,11 +408,15 @@
   }
 
   function renderValues(values) {
-    var section = block("Numbers in your report");
+    var section = block("Numbers in your report", "sec-numbers");
     var wrap = make("div", "table-wrap");
+    wrap.tabIndex = 0;
+    wrap.setAttribute("role", "region");
+    wrap.setAttribute("aria-labelledby", "values-caption");
     var table = make("table", "values");
 
     var caption = make("caption", "", "Status compares each result with the range printed in your report. It does not say what a result means for you.");
+    caption.id = "values-caption";
     caption.setAttribute("lang", "en");
     table.appendChild(caption);
 
@@ -386,7 +454,7 @@
   }
 
   function renderCompare(compare) {
-    var section = block("What changed between the two reports");
+    var section = block("What changed between the two reports", "sec-compare");
     if (compare.overview) section.appendChild(make("p", "", compare.overview));
 
     var note = make("p", "fineprint", "LabDecode describes what is written differently. It does not say whether a change is good or bad. Your care team does that.");
@@ -422,7 +490,7 @@
   }
 
   function renderNextSteps(steps) {
-    var section = block("What often happens next");
+    var section = block("What often happens next", "sec-next");
     var note = make("p", "fineprint", "General information only. Your care team decides what applies to you.");
     note.setAttribute("lang", "en");
     section.appendChild(note);
@@ -470,7 +538,7 @@
   }
 
   function renderQuestions() {
-    var section = block("Questions to ask your care team");
+    var section = block("Questions to ask your care team", "sec-questions");
     var list = make("ol", "question-list");
     refreshQuestionList(list);
     questionListEl = list;
@@ -627,7 +695,7 @@
   }
 
   function renderLearn() {
-    var section = block("Family, prevention and common myths");
+    var section = block("Family, prevention and common myths", "sec-family");
     var body = make("div", "learn-body");
 
     if (state.learn) {
@@ -753,7 +821,7 @@
   }
 
   function renderAsk() {
-    var section = block("Ask about this report");
+    var section = block("Ask about this report", "sec-ask");
 
     var intro = make(
       "p",
@@ -867,6 +935,7 @@
 
   function renderTake() {
     var section = make("section", "take");
+    section.id = "sec-take";
     section.setAttribute("lang", "en");
     section.appendChild(make("h2", "", "Take it with you"));
 
@@ -1135,7 +1204,12 @@
     printBtn.addEventListener("click", printExplanation);
     actions.appendChild(printBtn);
     head.appendChild(actions);
-    els.results.appendChild(head);
+
+    var hero = make("section", "result-hero");
+    hero.appendChild(head);
+    var glance = renderGlance(data.findings);
+    if (glance) hero.appendChild(glance);
+    els.results.appendChild(hero);
 
     if (options.banner) {
       els.results.appendChild(make("p", "note sent-note", options.banner));
@@ -1153,7 +1227,8 @@
     );
 
     if (data.overview) {
-      var overview = block("In brief");
+      var overview = block("In brief", "sec-summary");
+      overview.className += " lead";
       var overviewText = make("p");
       fillText(overviewText, data.overview);
       overview.appendChild(overviewText);
@@ -1167,6 +1242,7 @@
     }
 
     var findings = make("section", "findings");
+    findings.id = "sec-findings";
     var findingsHead = make("h2", "", "Finding by finding");
     findingsHead.style.margin = "0 0 0.8rem";
     findings.appendChild(findingsHead);
@@ -1208,6 +1284,8 @@
       disclaimer.appendChild(note);
     }
     els.results.appendChild(disclaimer);
+
+    insertJump();
 
     els.empty.hidden = true;
     els.results.hidden = false;
@@ -1419,6 +1497,7 @@
         setNote(els.uploadNote, "", false);
         setNote(els.redactNote, "", false);
         els.language.value = "en";
+        syncLanguageChips();
         els.bilingualRow.hidden = true;
         applyInterfaceLanguage("en");
 
@@ -1441,6 +1520,68 @@
       });
   }
 
+  function setLanguageDisabled(flag) {
+    els.language.disabled = flag;
+    var group = $("language-chips");
+    if (!group) return;
+    group.setAttribute("aria-disabled", flag ? "true" : "false");
+    Array.prototype.forEach.call(group.querySelectorAll("input"), function (input) {
+      input.disabled = flag;
+    });
+  }
+
+  function syncLanguageChips() {
+    var group = $("language-chips");
+    if (!group) return;
+    Array.prototype.forEach.call(group.querySelectorAll("input"), function (input) {
+      input.checked = input.value === els.language.value;
+    });
+  }
+
+  function buildLanguageChips() {
+    var group = $("language-chips");
+    var field = $("language-field");
+    if (!group || !field) return;
+
+    Array.prototype.forEach.call(els.language.options, function (option) {
+      var text = option.textContent.trim();
+      var parts = /^(.*?)\s*\((.*)\)$/.exec(text);
+      var nativeName = parts ? parts[1] : text;
+      var english = parts ? parts[2] : "";
+      var beta = /,\s*beta$/.test(english);
+      english = english.replace(/,\s*beta$/, "");
+
+      var label = make("label", "chip-choice");
+      var input = make("input");
+      input.type = "radio";
+      input.name = "language-choice";
+      input.value = option.value;
+      input.checked = option.value === els.language.value;
+
+      var body = make("span", "chip-body");
+      body.appendChild(make("span", "chip-native", nativeName));
+      if (english || beta) {
+        var line = make("span", "chip-line");
+        if (english) line.appendChild(make("span", "chip-english", english));
+        if (beta) line.appendChild(make("span", "chip-beta", "Beta"));
+        body.appendChild(line);
+      }
+
+      label.appendChild(input);
+      label.appendChild(body);
+      input.addEventListener("change", function () {
+        if (!input.checked) return;
+        els.language.value = option.value;
+        els.language.dispatchEvent(new Event("change"));
+      });
+      group.appendChild(label);
+    });
+
+    els.language.setAttribute("tabindex", "-1");
+    els.language.setAttribute("aria-hidden", "true");
+    field.classList.add("has-chips");
+  }
+
   function applyInterfaceLanguage(language) {
     if (language === "en") {
       window.LabI18n.disable();
@@ -1450,9 +1591,9 @@
       return;
     }
 
-    els.language.disabled = true;
+    setLanguageDisabled(true);
     window.LabI18n.load(language).then(function (map) {
-      els.language.disabled = false;
+      setLanguageDisabled(false);
       if (els.language.value !== language) return;
       if (!map) {
         window.LabI18n.disable();
@@ -1605,6 +1746,7 @@
   });
   els.language.addEventListener("change", function () {
     els.bilingualRow.hidden = els.language.value === "en";
+    syncLanguageChips();
     rememberLanguage(els.language.value);
     applyInterfaceLanguage(els.language.value);
   });
@@ -1624,6 +1766,7 @@
   els.demo.addEventListener("click", loadDemo);
 
   updateCount();
+  buildLanguageChips();
 
   (function restoreLanguage() {
     var saved = null;
@@ -1638,6 +1781,7 @@
     });
     if (!known) return;
     els.language.value = saved;
+    syncLanguageChips();
     els.bilingualRow.hidden = false;
     applyInterfaceLanguage(saved);
   })();

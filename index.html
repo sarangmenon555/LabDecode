@@ -20,19 +20,23 @@
 <body>
 <a class="skip" href="#report">Skip to the report box</a>
 
-<header class="masthead">
-  <div class="masthead-inner">
-    <h1 class="wordmark">LabDecode</h1>
-    <p class="tagline">Your report, in plain words. Then the right questions for your care team.</p>
+<header class="site-header">
+<div class="topbar">
+  <div class="topbar-inner">
+    <p class="wordmark">LabDecode</p>
     <div class="display" role="group" aria-label="Display settings">
-      <span class="display-label">Text size</span>
-      <button type="button" data-size-choice="normal" aria-pressed="true">Normal</button>
-      <button type="button" data-size-choice="large" aria-pressed="false">Large</button>
-      <button type="button" data-size-choice="larger" aria-pressed="false">Larger</button>
-      <span class="display-label display-gap">Theme</span>
-      <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
-      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
-      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      <span class="display-group">
+        <span class="display-label">Text size</span>
+        <button type="button" data-size-choice="normal" aria-pressed="true">Normal</button>
+        <button type="button" data-size-choice="large" aria-pressed="false">Large</button>
+        <button type="button" data-size-choice="larger" aria-pressed="false">Larger</button>
+      </span>
+      <span class="display-group">
+        <span class="display-label">Theme</span>
+        <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
+        <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </span>
       <span class="display-check">
         <input type="checkbox" id="contrast-toggle">
         <label for="contrast-toggle">High contrast</label>
@@ -40,55 +44,31 @@
       <button type="button" id="ui-toggle" class="display-gap" hidden>Show interface in English</button>
     </div>
   </div>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">Your cancer report, explained in your own language.</h1>
+    <p class="tagline">Your report, in plain words. Then the right questions for your care team.</p>
+    <ul class="trust">
+      <li>Photos are read on your device</li>
+      <li>Never diagnoses or advises treatment</li>
+      <li>Ten Indian languages</li>
+    </ul>
+  </div>
+</div>
 </header>
 
 <main class="layout">
   <section class="panel input-panel" aria-labelledby="input-heading">
-    <h2 id="input-heading">Your report</h2>
+    <h2 id="input-heading" class="visually-hidden">Your report</h2>
 
-    <div class="upload">
-      <span class="upload-title">Have a photo or PDF instead?</span>
-      <div class="upload-actions">
-        <label class="secondary file-button" for="file-input">Upload photo or PDF</label>
-        <label class="secondary file-button" for="camera-input">Take a photo</label>
-      </div>
-      <input type="file" id="file-input" class="visually-hidden" accept="image/*,application/pdf" multiple>
-      <input type="file" id="camera-input" class="visually-hidden" accept="image/*" capture="environment">
-      <p class="help">The file is read on your device. It is never uploaded. Choose several photos at once for a report with more than one page.</p>
-      <button type="button" id="add-page" class="text-button" hidden>Add another page</button>
-      <div id="upload-progress" class="progress-wrap" hidden>
-        <progress id="progress-bar" max="100"></progress>
-        <span id="progress-label" class="progress-label"></span>
-      </div>
-      <p id="upload-note" class="note" role="status" hidden></p>
-    </div>
+    <section class="step" aria-labelledby="step-language">
+      <h3 class="step-title" id="step-language"><span class="step-num" aria-hidden="true">1</span> Choose your language</h3>
 
-    <label for="report">Or paste the text of a pathology or imaging report</label>
-    <textarea id="report" rows="12" maxlength="12000" spellcheck="false" aria-describedby="report-help report-count"></textarea>
-    <div class="meta-row">
-      <span id="report-count" class="count">0 / 12,000</span>
-      <button type="button" id="sample" class="text-button">Use a sample report</button>
-    </div>
-    <p id="report-help" class="help">Check the text for anything personal before you continue.</p>
-
-    <div class="redact-row">
-      <input type="checkbox" id="redact-toggle" checked>
-      <label for="redact-toggle" class="inline-label">Remove personal details before sending</label>
-    </div>
-    <button type="button" id="redact-now" class="text-button">Remove them now so I can check</button>
-    <p id="redact-note" class="note" role="status" hidden></p>
-
-    <details class="compare" id="compare-details">
-      <summary>Compare with an earlier report</summary>
-      <label for="older">Paste the earlier report</label>
-      <textarea id="older" rows="8" maxlength="12000" spellcheck="false" aria-describedby="older-help"></textarea>
-      <button type="button" id="sample-pair" class="text-button">Load a sample pair of reports</button>
-      <p id="older-help" class="help">The report above is treated as the newer one. Personal details are removed from both if the box above is ticked.</p>
-    </details>
-
-    <div class="field-row">
-      <div class="field">
-        <label for="language">Explain in <span class="lang-hint" aria-hidden="true" data-no-i18n>भाषा, ভাষা, ભાષા, ಭಾಷೆ, ഭാഷ, மொழி, భాష, ଭାଷା</span></label>
+      <div class="field" id="language-field">
+        <label id="language-label" for="language">Explain in <span class="lang-hint" aria-hidden="true" data-no-i18n>भाषा, ভাষা, ભાષા, ಭಾಷೆ, ഭാഷ, மொழி, భాష, ଭାଷା</span></label>
+        <div class="chips" id="language-chips" role="radiogroup" aria-labelledby="language-label"></div>
         <select id="language">
           <option value="en">English</option>
           <option value="as">অসমীয়া (Assamese, beta)</option>
@@ -103,6 +83,7 @@
           <option value="te">తెలుగు (Telugu)</option>
         </select>
       </div>
+
       <div class="field">
         <label for="level">Reading level</label>
         <select id="level">
@@ -110,31 +91,80 @@
           <option value="standard">Standard</option>
         </select>
       </div>
-    </div>
 
-    <p class="help language-note">Translations are machine generated. Odia and Assamese are marked beta because they are the least reliable. Ask a bilingual person to check anything important.</p>
+      <p class="help language-note">Translations are machine generated. Odia and Assamese are marked beta because they are the least reliable. Ask a bilingual person to check anything important.</p>
 
-    <div class="redact-row bilingual-row" id="bilingual-row" hidden>
-      <input type="checkbox" id="bilingual-toggle">
-      <label for="bilingual-toggle" class="inline-label">Also show English next to the translation, for talking with a doctor</label>
-    </div>
+      <div class="redact-row bilingual-row" id="bilingual-row" hidden>
+        <input type="checkbox" id="bilingual-toggle">
+        <label for="bilingual-toggle" class="inline-label">Also show English next to the translation, for talking with a doctor</label>
+      </div>
+    </section>
 
-    <button type="button" id="decode" class="primary">Explain this report</button>
-    <button type="button" id="cancel" class="secondary cancel-button" hidden>Cancel</button>
+    <section class="step" aria-labelledby="step-report">
+      <h3 class="step-title" id="step-report"><span class="step-num" aria-hidden="true">2</span> Add your report</h3>
 
-    <p class="privacy">Nothing is saved by LabDecode. Your text is sent once to Google's Gemini service to produce the explanation. On Google's free tier, submitted text can be used to improve its products and may be read by reviewers, so remove personal details first.</p>
+      <div class="upload">
+        <span class="upload-title">Have a photo or PDF instead?</span>
+        <div class="upload-actions">
+          <label class="secondary file-button" for="file-input">Upload photo or PDF</label>
+          <label class="secondary file-button" for="camera-input">Take a photo</label>
+        </div>
+        <input type="file" id="file-input" class="visually-hidden" accept="image/*,application/pdf" multiple>
+        <input type="file" id="camera-input" class="visually-hidden" accept="image/*" capture="environment">
+        <p class="help">The file is read on your device. It is never uploaded. Choose several photos at once for a report with more than one page.</p>
+        <button type="button" id="add-page" class="text-button" hidden>Add another page</button>
+        <div id="upload-progress" class="progress-wrap" hidden>
+          <progress id="progress-bar" max="100"></progress>
+          <span id="progress-label" class="progress-label"></span>
+        </div>
+        <p id="upload-note" class="note" role="status" hidden></p>
+      </div>
+
+      <label for="report">Or paste the text of a pathology or imaging report</label>
+      <textarea id="report" rows="12" maxlength="12000" spellcheck="false" aria-describedby="report-help report-count"></textarea>
+      <div class="meta-row">
+        <span id="report-count" class="count">0 / 12,000</span>
+        <button type="button" id="sample" class="text-button">Use a sample report</button>
+      </div>
+      <p id="report-help" class="help">Check the text for anything personal before you continue.</p>
+
+      <div class="redact-row">
+        <input type="checkbox" id="redact-toggle" checked>
+        <label for="redact-toggle" class="inline-label">Remove personal details before sending</label>
+      </div>
+      <button type="button" id="redact-now" class="text-button">Remove them now so I can check</button>
+      <p id="redact-note" class="note" role="status" hidden></p>
+
+      <details class="compare" id="compare-details">
+        <summary>Compare with an earlier report</summary>
+        <label for="older">Paste the earlier report</label>
+        <textarea id="older" rows="8" maxlength="12000" spellcheck="false" aria-describedby="older-help"></textarea>
+        <button type="button" id="sample-pair" class="text-button">Load a sample pair of reports</button>
+        <p id="older-help" class="help">The report above is treated as the newer one. Personal details are removed from both if the box above is ticked.</p>
+      </details>
+    </section>
+
+    <section class="step" aria-labelledby="step-go">
+      <h3 class="step-title" id="step-go"><span class="step-num" aria-hidden="true">3</span> Get your explanation</h3>
+      <button type="button" id="decode" class="primary">Explain this report</button>
+      <button type="button" id="cancel" class="secondary cancel-button" hidden>Cancel</button>
+      <p class="privacy">Nothing is saved by LabDecode. Your text is sent once to Google's Gemini service to produce the explanation. On Google's free tier, submitted text can be used to improve its products and may be read by reviewers, so remove personal details first.</p>
+    </section>
   </section>
 
   <section class="output" id="output" aria-live="polite" aria-busy="false">
     <div class="empty" id="empty">
       <h2>What you will get</h2>
-      <ul class="empty-list">
-        <li>Each finding set beside the exact words from your report</li>
-        <li>A plain explanation, with anything uncertain marked for your care team</li>
-        <li>A list of questions to bring to your appointment, ready to print</li>
+      <ul class="benefits">
+        <li class="benefit"><strong>Words you can check</strong><span>Each finding set beside the exact words from your report</span></li>
+        <li class="benefit"><strong>Honest about doubt</strong><span>A plain explanation, with anything uncertain marked for your care team</span></li>
+        <li class="benefit"><strong>Ready for the visit</strong><span>A list of questions to bring to your appointment, ready to print</span></li>
       </ul>
-      <button type="button" id="demo" class="secondary demo-button">See a ready-made example</button>
-      <p class="fineprint">Uses a synthetic report. Works without an internet connection.</p>
+      <div class="demo-card">
+        <p class="demo-lead">Want to see it first?</p>
+        <button type="button" id="demo" class="secondary demo-button">See a ready-made example</button>
+        <p class="fineprint">Uses a synthetic report. Works without an internet connection.</p>
+      </div>
     </div>
     <div id="status" class="status" role="status" hidden></div>
     <div id="results" hidden></div>
@@ -167,7 +197,9 @@
       <label for="lookup-input">Search a term, such as margin, grade or HER2</label>
       <input type="text" id="lookup-input" autocomplete="off" spellcheck="false">
       <p id="lookup-count" class="fineprint" role="status"></p>
-      <dl id="lookup-results" class="lookup-results"></dl>
+      <div class="lookup-scroll" role="region" aria-label="Medical term list" tabindex="0">
+        <dl id="lookup-results" class="lookup-results"></dl>
+      </div>
       <p class="fineprint">Short general definitions in English. They explain what a word means, not what a result means for any person.</p>
     </div>
   </details>

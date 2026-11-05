@@ -25,12 +25,12 @@ function ratio(a, b) {
 }
 
 const TEXT = [
-  ["ink", "bg"], ["ink", "surface"], ["ink", "soft"], ["ink", "tint"],
+  ["ink", "bg"], ["ink", "surface"], ["ink", "soft"], ["ink", "tint"], ["ink", "tint-warn"], ["ink", "tint-plain"], ["ink", "tint-discuss"], ["ink", "tint-unclear"],
   ["muted", "bg"], ["muted", "surface"], ["muted", "soft"],
   ["accent-strong", "surface"], ["accent-strong", "soft"], ["accent-strong", "field"], ["accent-strong", "tint"], ["accent-strong", "tint-strong"],
-  ["plain", "surface"], ["plain", "soft"],
-  ["discuss", "surface"], ["discuss", "soft"], ["discuss", "tint-warn"],
-  ["unclear", "surface"], ["unclear", "soft"],
+  ["plain", "surface"], ["plain", "soft"], ["plain", "tint-plain"],
+  ["discuss", "surface"], ["discuss", "soft"], ["discuss", "tint-warn"], ["discuss", "tint-discuss"],
+  ["unclear", "surface"], ["unclear", "soft"], ["unclear", "tint-unclear"],
   ["danger", "surface"],
   ["accent-ink", "accent"]
 ];
@@ -50,9 +50,11 @@ for (const [name, theme] of Object.entries(themes)) {
       const value = ratio(theme[foreground], theme[background]);
       assert.ok(value >= 4.5, `${foreground} on ${background} is ${value.toFixed(2)}`);
     }
-    for (const colour of ["#ffffff", "#d8ecee"]) {
-      const value = ratio(colour, theme.masthead);
-      assert.ok(value >= 4.5, `${colour} on masthead is ${value.toFixed(2)}`);
+    for (const background of ["masthead", "masthead-end"]) {
+      for (const colour of ["#ffffff", theme["hero-sub"]]) {
+        const value = ratio(colour, theme[background]);
+        assert.ok(value >= 4.5, `${colour} on ${background} is ${value.toFixed(2)}`);
+      }
     }
   });
 

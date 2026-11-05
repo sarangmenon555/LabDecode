@@ -1,4 +1,4 @@
-var VERSION = "labdecode-v10";
+var VERSION = "labdecode-v11";
 var PREFIX = "labdecode-";
 var SHELL = [
   "./",
